@@ -28,3 +28,14 @@ function read_rc_file() {
   fi
 }
 
+function get_password() {
+  if [[ -n "$PASSWORD" ]];then
+    echo "$PASSWORD"
+  elif [[ -n "$PASSWORD_COMMAND" ]];then
+    echo "$($PASSWORD_COMMAND)"
+  else
+    read -r -s -p "enter password: "
+    echo "$REPLY"
+  fi
+}
+
