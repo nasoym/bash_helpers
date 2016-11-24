@@ -10,14 +10,6 @@ function getarg() {
   fi
 }
 
-function fail() {
-  printf "${1}: "
-  sed -n ${1}p $0 
-  echo
-  echo "fail"
-  exit 1
-}
-
 function read_rc_file() {
   if [[ -r ~/.$(basename ${0})rc ]];then
     while IFS='=' read -r key value; do
