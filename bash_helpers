@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 function getarg() { 
-  local VAR_NAME=$1 NEXT_ARG=${BASH_ARGV[$((BASH_ARGC - OPTIND))]}
-  if [[ $NEXT_ARG =~ ^-$ ]] || [[ $NEXT_ARG =~ ^[^-] ]]; then
-    eval $VAR_NAME="'${NEXT_ARG}'"
+  local varibale_name="$1"
+  local next_arg="${BASH_ARGV[$[BASH_ARGC-OPTIND]]}"
+  declare -g "${varibale_name}"=""
+  if [[ $next_arg =~ ^-$ ]] || [[ $next_arg =~ ^[^-] ]]; then
+    declare -g "${varibale_name}"="${next_arg}"
     let "OPTIND++"
-  else 
-    eval unset $VAR_NAME
   fi
 }
 
