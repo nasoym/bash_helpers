@@ -3,7 +3,7 @@
 function getarg() { 
   local VAR_NAME=$1 NEXT_ARG=${BASH_ARGV[$((BASH_ARGC - OPTIND))]}
   if [[ $NEXT_ARG =~ ^-$ ]] || [[ $NEXT_ARG =~ ^[^-] ]]; then
-    eval $VAR_NAME="$NEXT_ARG"
+    eval $VAR_NAME="'${NEXT_ARG}'"
     let "OPTIND++"
   else 
     eval unset $VAR_NAME
